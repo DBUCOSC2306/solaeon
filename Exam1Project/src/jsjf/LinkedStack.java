@@ -62,7 +62,10 @@ public class LinkedStack<T> implements StackADT<T>
      */
     public T peek() throws EmptyCollectionException
     {
-        // TODOCOSC2306
+        LinearNode<T> copy = new LinearNode<T>(top);
+		return copy;
+		//I didn't think that returning a reference to the node would be... secure.
+		//so I made a copy and returned that. You can access a copy of the data, but you won't change the original.
     }
 
     /**
@@ -71,7 +74,10 @@ public class LinkedStack<T> implements StackADT<T>
      */
     public boolean isEmpty()
     {
-        // TODOCOSC2306
+        if (top == null)
+		return 0;
+		else
+		return 1;
     }
  
     /**
@@ -80,7 +86,7 @@ public class LinkedStack<T> implements StackADT<T>
      */
     public int size()
     {
-        // TODOCOSC2306
+        return count;
     }
 
     /**
