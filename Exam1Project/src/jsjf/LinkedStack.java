@@ -64,6 +64,8 @@ public class LinkedStack<T> implements StackADT<T>
     {
         LinearNode<T> copy = new LinearNode<T>(top);
 		return copy;
+		//I didn't think that returning a reference to the node would be... secure.
+		//so I made a copy and returned that. You can access a copy of the data, but you won't change the original.
     }
 
     /**
