@@ -62,7 +62,8 @@ public class LinkedStack<T> implements StackADT<T>
      */
     public T peek() throws EmptyCollectionException
     {
-        // TODOCOSC2306
+        LinearNode<T> copy = new LinearNode<T>(top);
+		return copy;
     }
 
     /**
@@ -71,7 +72,10 @@ public class LinkedStack<T> implements StackADT<T>
      */
     public boolean isEmpty()
     {
-        // TODOCOSC2306
+		if (top == null)
+			return true;
+		else
+			return false;
     }
  
     /**
@@ -80,7 +84,7 @@ public class LinkedStack<T> implements StackADT<T>
      */
     public int size()
     {
-        // TODOCOSC2306
+        return count;
     }
 
     /**
@@ -89,6 +93,15 @@ public class LinkedStack<T> implements StackADT<T>
      */
     public String toString()
     {
-        // TODOCOSC2306
+        string holdMyRootBeer;
+		Iterator<LinkedStack<T>> linkedStackIterator = stack.Iterator();
+		while (linkedStackIterator.hasNext())
+		{
+			holdMyRootBeer += linkedStackIterator.next();
+			holdMyRootBeer += " ";
+			return holdMyRootBeer;
+		}
     }
+	//this probably won't work. I don't know if I can make an Iterator<LinkedStack<T>> like that.
+	//And I don't know if I can concatenate my string like that with the iterator.
 }
