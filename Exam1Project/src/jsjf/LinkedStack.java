@@ -74,10 +74,10 @@ public class LinkedStack<T> implements StackADT<T>
      */
     public boolean isEmpty()
     {
-        if (top == null)
-		return 0;
+		if (top == null)
+			return true;
 		else
-		return 1;
+			return false;
     }
  
     /**
@@ -95,6 +95,15 @@ public class LinkedStack<T> implements StackADT<T>
      */
     public String toString()
     {
-        // TODOCOSC2306
+        string holdMyRootBeer;
+		Iterator<LinkedStack<T>> linkedStackIterator = stack.Iterator();
+		while (linkedStackIterator.hasNext())
+		{
+			holdMyRootBeer += linkedStackIterator.next();
+			holdMyRootBeer += " ";
+			return holdMyRootBeer;
+		}
     }
+	//this probably won't work. I don't know if I can make an Iterator<LinkedStack<T>> like that.
+	//And I don't know if I can concatenate my string like that with the iterator.
 }
