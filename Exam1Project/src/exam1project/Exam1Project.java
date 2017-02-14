@@ -18,8 +18,12 @@ public class Exam1Project {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        ArrayStack myArrayStack = new ArrayStack();
+	// 
+	// TODO EXAM 1 - TAKEHOME
+	// 1. Complete the ArrayStack and LinkedStack classes (all 6 methods)
+        // 2. In this main, write a test for each method AND any exceptions
+        // 3. Push all of the changes back to the repository (git push)
+
     }
     
 }
