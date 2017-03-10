@@ -44,7 +44,6 @@ public class LinkedOrderedList<T extends Comparable<T>> extends LinkedList<T>
 		else if (element.compareTo(head.getElement()) < 0)
 		{
 			System.out.println("add " + element + " before " + head.getElement());
-			newNode.setElement(head.getElement());
 			newNode.setNext(head);
                         head = newNode;
                         head.setNext(newNode.getNext());

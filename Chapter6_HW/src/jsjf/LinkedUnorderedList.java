@@ -28,8 +28,9 @@ public class LinkedUnorderedList<T extends Comparable<T>> extends LinkedList<T>
     public void addToFront(T element)
     {
         LinearNode<T> first = new LinearNode(element);
-        first.setNext(head);
         head = first;
+        head.setElement(first.getElement());
+        tail = first;
     }
 	
 	/**
@@ -39,9 +40,20 @@ public class LinkedUnorderedList<T extends Comparable<T>> extends LinkedList<T>
 	 */
     public void addToRear(T element)
     {
-        LinearNode<T> last = new LinearNode(element);
-        last.setNext(tail);
-        tail = last;
+        LinearNode<T> rear = new LinearNode<T>(element);
+        LinearNode<T> after = head;
+        after.setNext(head.getNext());
+	LinearNode<T> before = head;
+	while (after != null)
+		{
+			before = after;
+                        after = after.getNext();
+                        before.setNext(after);
+                }
+			// insert between before & after
+			rear.setNext(before.getNext());
+			before.setNext(rear);
+			System.out.println("add " + element + " after " + before.getElement());
     }
 	
 	
@@ -57,12 +69,14 @@ public class LinkedUnorderedList<T extends Comparable<T>> extends LinkedList<T>
         {
          
         LinearNode<T> tmp = head;
+        tmp.setElement(head.getElement());
         LinearNode<T> refNode = null;
         System.out.println("Traversing to all nodes..");
         /**
          * Traverse till given element
          */
-        while(true){
+        while(true)
+        {
             if(tmp == null){
                 break;
             }
@@ -71,6 +85,7 @@ public class LinkedUnorderedList<T extends Comparable<T>> extends LinkedList<T>
                 refNode = tmp;
                 break;
             }
+            tmp.setElement(tmp.getNext().getElement());
             tmp = tmp.getNext();
         }
         if(refNode != null){
