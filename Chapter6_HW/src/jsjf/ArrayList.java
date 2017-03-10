@@ -37,7 +37,7 @@ public abstract class ArrayList<T> implements ListADT<T>, Iterable<T>
     {
         rear = 0;
         list = (T[])(new Object[initialCapacity]);
-		modCount = 0;
+        modCount = 0;
     }
 
     /**
@@ -47,7 +47,12 @@ public abstract class ArrayList<T> implements ListADT<T>, Iterable<T>
      */
     protected void expandCapacity()
     {
-        // To be completed as a Programming Project
+       T[] newlist = (T[])(new Object[size()]);
+       for (int i=0; i < modCount; i++)
+            newlist[i] = list[i];
+       list = (T[])(new Object[modCount*2]);
+       for (int i=0; i < modCount; i++)
+           list[i] = newlist[i];
     }
 	
     /**
@@ -58,7 +63,10 @@ public abstract class ArrayList<T> implements ListADT<T>, Iterable<T>
      */
     public T removeLast() throws EmptyCollectionException
     {
-        // To be completed as a Programming Project
+        if (isEmpty())
+            throw new EmptyCollectionException("ArrayList");
+        list[modCount] = null;
+        return list[modCount--];
     }
 
     /**
@@ -69,14 +77,19 @@ public abstract class ArrayList<T> implements ListADT<T>, Iterable<T>
      */
     public T removeFirst() throws EmptyCollectionException
     {
-        // To be completed as a Programming Project
+        if (isEmpty())
+            throw new EmptyCollectionException("ArrayList");
+        for (int i=0; i < modCount; i++)
+            list[i]=list[i+1];
+        list[modCount-1] = null;
+        return list[0];
     }
 
     /**
      * Removes and returns the specified element.
      *
      * @param  element the element to be removed and returned from the list
-     * @return the removed elememt
+     * @return the removed element
      * @throws ElementNotFoundException if the element is not in the list
      */
     public T remove(T element)
@@ -110,7 +123,9 @@ public abstract class ArrayList<T> implements ListADT<T>, Iterable<T>
      */
     public T first() throws EmptyCollectionException
     {
-        // To be completed as a Programming Project
+        if (isEmpty())
+            throw new EmptyCollectionException("ArrayList");
+        return list[0];
     }
 
     /**
@@ -123,7 +138,9 @@ public abstract class ArrayList<T> implements ListADT<T>, Iterable<T>
      */
     public T last() throws EmptyCollectionException
     {
-        // To be completed as a Programming Project
+        if (isEmpty())
+            throw new EmptyCollectionException("ArrayList");
+        return list[modCount];
     }
 
     /**
@@ -167,7 +184,10 @@ public abstract class ArrayList<T> implements ListADT<T>, Iterable<T>
      */
     public boolean isEmpty()
     {
-        // To be completed as a Programming Project
+        if (size() == 0)
+            return true;
+        else
+            return false;
     }
  
     /**
@@ -177,7 +197,7 @@ public abstract class ArrayList<T> implements ListADT<T>, Iterable<T>
      */
     public int size()
     {
-        // To be completed as a Programming Project
+        return modCount;
     }
 
     /**
@@ -187,7 +207,12 @@ public abstract class ArrayList<T> implements ListADT<T>, Iterable<T>
      */
     public String toString()
     {
-        // To be completed as a Programming Project
+        String result = " ";
+        for (int i=0; i < modCount; i++)
+        {
+            result += list[i] + ", ";
+        }
+        return result;
     }
 	
     /**
