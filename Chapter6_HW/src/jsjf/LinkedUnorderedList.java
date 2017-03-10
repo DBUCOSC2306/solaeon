@@ -28,9 +28,8 @@ public class LinkedUnorderedList<T extends Comparable<T>> extends LinkedList<T>
     public void addToFront(T element)
     {
         LinearNode<T> first = new LinearNode(element);
-        LinearNode<T> temp = first;
-        temp.setNext(head);
-        head = temp;
+        first.setNext(head);
+        head = first;
     }
 	
 	/**
@@ -41,9 +40,8 @@ public class LinkedUnorderedList<T extends Comparable<T>> extends LinkedList<T>
     public void addToRear(T element)
     {
         LinearNode<T> last = new LinearNode(element);
-        LinearNode<T> temp = last;
-        temp.setNext(tail);
-        tail = temp;
+        last.setNext(tail);
+        tail = last;
     }
 	
 	
@@ -56,20 +54,39 @@ public class LinkedUnorderedList<T extends Comparable<T>> extends LinkedList<T>
 	 */
     public void addAfter(T element, T target)
     {
-        if (contains(target)); 
         {
-            LinearNode<T> temp = new LinearNode(element);
-            LinearNode<T> holder = new LinearNode(target);
-            temp = head;
-            while (!temp.equals(target) && temp.getNext() != null)
+         
+        LinearNode<T> tmp = head;
+        LinearNode<T> refNode = null;
+        System.out.println("Traversing to all nodes..");
+        /**
+         * Traverse till given element
+         */
+        while(true){
+            if(tmp == null){
+                break;
+            }
+            if(tmp.getElement().compareTo(target) == 0){
+                //found the target node, add after this node
+                refNode = tmp;
+                break;
+            }
+            tmp = tmp.getNext();
+        }
+        if(refNode != null){
+            //add element after the target node
+            LinearNode<T> nd = new LinearNode<T>();
+            nd.setElement(element);
+            nd.setNext(tmp.getNext());
+            if(tmp == tail){
+                tail = nd;
+            }
+            tmp.setNext(nd);
+             
+         } 
+            else 
             {
-                temp = temp.getNext();
-                if (temp.equals(target))
-                {
-                    temp = temp.getNext();
-                    holder.setNext(temp);
-                    modCount++;
-                }
+            System.out.println("Unable to find the given element...");
             }
         }
     }	
