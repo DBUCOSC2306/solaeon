@@ -45,26 +45,30 @@ public class LinkedOrderedList<T extends Comparable<T>> extends LinkedList<T>
 		{
 			System.out.println("add " + element + " before " + head.getElement());
 			newNode.setElement(head.getElement());
-			head = newNode;
+			newNode.setNext(head);
+                        head = newNode;
+                        head.setNext(newNode.getNext());
 		}
 		// otherwise, step down the list.  n will stop 
 		// at the node after the new node, and trailer will
 		// stop at the node before the new node
 		else
 		{
-			LinearNode<T> after = head.getNext();
+			LinearNode<T> after = head;
+                        after.setNext(head.getNext());
 			LinearNode<T> before = head;
 			while (after != null)
 			{
 				if (element.compareTo(after.getElement()) < 0)
 					break;
 				before = after;
-				after = after.getNext();
-			}
+                                after = after.getNext();
+                                before.setNext(after);
+                        }
 			// insert between before & after
 			newNode.setNext(before.getNext());
 			before.setNext(newNode);
-			System.out.println("add " + element + "after" + before.getElement());
+			System.out.println("add " + element + " after " + before.getElement());
 		}
     }
 }
