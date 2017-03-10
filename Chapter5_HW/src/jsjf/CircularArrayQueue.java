@@ -97,7 +97,9 @@ public class CircularArrayQueue<T> implements QueueADT<T>
      */
     public T first() throws EmptyCollectionException
     {
-        // To be completed as a Programming Project
+        if (isEmpty())
+            throw new EmptyCollectionException("CircularArrayQueue");
+        return queue[front];
     }
   
     /**
@@ -107,6 +109,10 @@ public class CircularArrayQueue<T> implements QueueADT<T>
     public boolean isEmpty()
     {
         // To be completed as a Programming Project
+        if (size() == 0)
+            return true;
+        else
+            return false;
     }
   
     /**
@@ -115,7 +121,7 @@ public class CircularArrayQueue<T> implements QueueADT<T>
      */
     public int size()
     {
-        // To be completed as a Programming Project
+       return count;
     }
   
     /**
@@ -124,6 +130,9 @@ public class CircularArrayQueue<T> implements QueueADT<T>
      */
     public String toString()
     {
-        // To be completed as a Programming Project
+        String result = " ";
+        for (int i = 0; i < count; i++)
+            result += queue[i] + ", ";
+        return result;
     }
 }

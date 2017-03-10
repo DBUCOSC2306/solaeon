@@ -9,7 +9,7 @@ import jsjf.exceptions.*;
  * @author Lewis and Chase
  * @version 4.0
  */
-public class LinkedUnorderedList<T> extends LinkedList<T> 
+public class LinkedUnorderedList<T extends Comparable<T>> extends LinkedList<T> 
          implements UnorderedListADT<T>
 {
     /**
@@ -27,7 +27,10 @@ public class LinkedUnorderedList<T> extends LinkedList<T>
 	 */
     public void addToFront(T element)
     {
-        // To be completed as a Programming Project
+        LinearNode<T> first = new LinearNode(element);
+        LinearNode<T> temp = first;
+        temp.setNext(head);
+        head = temp;
     }
 	
 	/**
@@ -37,7 +40,10 @@ public class LinkedUnorderedList<T> extends LinkedList<T>
 	 */
     public void addToRear(T element)
     {
-        // To be completed as a Programming Project
+        LinearNode<T> last = new LinearNode(element);
+        LinearNode<T> temp = last;
+        temp.setNext(tail);
+        tail = temp;
     }
 	
 	
@@ -50,6 +56,21 @@ public class LinkedUnorderedList<T> extends LinkedList<T>
 	 */
     public void addAfter(T element, T target)
     {
-        // To be completed as a Programming Project
+        if (contains(target)); 
+        {
+            LinearNode<T> temp = new LinearNode(element);
+            LinearNode<T> holder = new LinearNode(target);
+            temp = head;
+            while (!temp.equals(target) && temp.getNext() != null)
+            {
+                temp = temp.getNext();
+                if (temp.equals(target))
+                {
+                    temp = temp.getNext();
+                    holder.setNext(temp);
+                    modCount++;
+                }
+            }
+        }
     }	
 }
